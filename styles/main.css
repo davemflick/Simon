@@ -1,0 +1,245 @@
+html{
+	height: 100%;
+}
+
+body {
+	background-color: #ddd;
+	text-align: center;
+}
+
+#gameContainer {
+	position: relative;
+	border: 1px solid black;
+	border-radius: 50%;
+	width: 400px;
+	height: 400px;
+	margin: auto;
+	margin-top: 20%;
+	background-color: #444;
+}
+
+.btns {
+	position:absolute;
+	width:170px;
+    height:170px;
+    margin: 20px;
+    pointer-events: none;
+}
+
+#green {
+	top: 0;
+	left: 0;
+	border-radius: 100% 0 0 0;
+	background-color: green;
+}
+
+#red{
+	top: 0;
+	right: 0;
+	border-radius: 0 100% 0 0;
+	background-color: red;
+}
+
+#yellow {
+	bottom: 0;
+	left: 0;
+	border-radius: 0 0 0 100%;
+	background-color: yellow;
+}
+
+#blue{
+	bottom: 0;
+	right: 0;
+	border-radius: 0 0 100% 0;
+	background-color: blue;
+
+}
+
+#centerContainer{
+	position: absolute;
+	margin: 100px;
+	background-color: #ddd;
+	border: 15px solid #444;
+	border-radius: 50%;
+	height: 200px;
+	width: 200px;
+}
+
+#title {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	font-size: 35px;
+}
+
+.settingContainer .row{
+	font-size: 10px;
+}
+
+#counter {
+	width: 35px;
+	height: 25px;
+	border: solid black 1px;
+	border-radius: 4px;
+	background-color: white;
+	margin-top: 5px
+}
+
+#strictLight{
+	height: 7px;
+	width: 7px;
+	margin: auto;
+	margin-bottom: 3px;
+	border-radius: 50%;
+	background-color: white;
+	border: solid black 1px;
+}
+
+.startContainer{
+ margin-top: 8px;
+}
+
+
+button {
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 25px;
+	margin-top: 5px;
+}
+
+.switch input {display: none;}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top:0;
+	left: 0;
+	right:0;
+	bottom:0;
+	border-radius: 25px;
+	background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 8px;
+  bottom: 4px;
+  border-radius: 50%;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+
+input:checked + .slider {
+  background-color: #2BE7FB;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2BE7FB;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+/*#2196F3*/
+
+/*FOR MOBILE DEVICES*/
+
+@media (max-width: 425px){
+	#gameContainer {
+	position: relative;
+	border: 1px solid black;
+	border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	margin: auto;
+	margin-top: 20%;
+}
+.btns {
+	position:absolute;
+	width:128px;
+    height:128px;
+    margin: 15px;
+    pointer-events: none;
+}
+
+#centerContainer{
+	position: absolute;
+	margin: 75px;
+	background-color: white;
+	border: 12px solid #444;
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;
+}
+#title {
+	margin-top: 10px;
+	font-size: 27px;
+}
+
+.settingContainer .row{
+	font-size: 9px;
+}
+
+#counter {
+	width: 28px;
+	height: 20px;
+	border: solid black 1px;
+	border-radius: 4px;
+	background-color: white;
+	margin-top: 5px
+}
+
+#strictLight{
+	height: 5px;
+	width: 5px;
+	margin: auto;
+	margin-bottom: 3px;
+	border-radius: 50%;
+	background-color: white;
+	border: solid black 1px;
+}
+
+.startContainer{
+ margin-top: 8px;
+ margin-right: -5px;
+}
+
+.strictContainer {
+	margin-left: -5px;
+}
+
+
+button {
+	border-radius: 50%;
+	width: 12px;
+	height: 12px;
+}
+
+
+} /*End of media query*/
+
+
+
+
+
+
+
+
+
+
