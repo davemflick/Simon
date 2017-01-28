@@ -65,13 +65,13 @@ function highlight(elem, bkColor){
 	}, 500);
 }
 
-function pickGreen (){
+
 $green.onclick = function () {
 	if(gamePower === true){
 	highlight($green, '#03F903');
 	playerSelections.push($green);}
 }
-}
+
 
 $red.onclick = function (){
 	if(gamePower === true){
