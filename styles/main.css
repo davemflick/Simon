@@ -34,6 +34,7 @@ body {
 	border-radius: 100% 0 0 0;
 	background-color: #047213;
 	box-shadow: 2px 2px 5px 6px black;
+	cursor: pointer;
 }
 
 #red{
@@ -42,6 +43,7 @@ body {
 	border-radius: 0 100% 0 0;
 	background-color: #A20101;
 	box-shadow: 2px 2px 5px 6px black;
+	cursor: pointer;
 }
 
 #yellow {
@@ -50,6 +52,7 @@ body {
 	border-radius: 0 0 0 100%;
 	background-color: #A5A004;
 	box-shadow: 2px 2px 5px 6px black;
+	cursor: pointer;
 }
 
 #blue{
@@ -58,6 +61,7 @@ body {
 	border-radius: 0 0 100% 0;
 	background-color: #071660;
 	box-shadow: 2px 2px 5px 6px black;
+	cursor: pointer;
 
 }
 
