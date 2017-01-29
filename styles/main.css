@@ -203,6 +203,7 @@ input:checked + .slider:before {
 	width:128px;
     height:128px;
     margin: 15px;
+    cursor: pointer;
 }
 
 #centerContainer{
