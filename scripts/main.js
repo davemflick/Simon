@@ -26,7 +26,7 @@ var $blue = document.getElementById('blue');
 var gamePower = false;
 var playSelect = [];
 var compSelect = [];
-var choices = [$green, $red, $yellow, $blue];
+var choices = ['g', 'r', 'y', 'b'];
 var greenSound = 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3';
 var redSound = 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3';
 var yellowSound = 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3';
@@ -42,7 +42,8 @@ var compOn = false;
 function powerOn(){
 	if ($switchPower.checked === true){ gamePower = true;
 		counterOn();
-		console.log('Powered on')}
+		console.log('Powered on')
+		$switchPower.onclick = function(){counterOff()}; }
 		else if ($switchPower.checked === false){ gamePower = false;
 			counterOff();
 			console.log('turned off')
@@ -52,15 +53,16 @@ function powerOn(){
 
 function counterOn () {
 	$counter.innerHTML = '--';
-	var playSelect = [];
-    var compSelect = [];
+	playSelect = [];
+    compSelect = [];
     roundCount = 0;
 }
 
 function counterOff(){
+	location.reload();
 	$counter.innerHTML = '';
-	var playSelect = [];
-    var compSelect = [];
+	playSelect = [];
+    compSelect = [];
     roundCount = 0;
 }
 
@@ -73,62 +75,104 @@ function highlight(elem, bkColor){
 }
 
 
+var strictValue =  0; 
+$strictMode.onclick = function(){
+	if(gamePower === true){
+		$counter.innerHTML = '--';
+		playSelect = [];
+    	compSelect = [];
+    	roundCount = 0;
+	if($strictMode.value == 0){
+		$strictLight.style.backgroundColor = 'red';
+		$strictMode.value += 1;
+		return strictValue = $strictMode.value;
+	} else if ($strictMode.value == 1){
+		$strictLight.style.backgroundColor = 'white';
+		$strictMode.value -= 1;
+		return strictValue = $strictMode.value;
+	}
+ }
+}
+
 $green.onclick = function () {
 	if(gamePower === true && compOn === false){
-	greenActive();
-	yourTurn($green);
-	console.log(playSelect)
+	greenActive(200);
+	yourTurn('g');
   }
 }
 
 
 $red.onclick = function (){
 	if(gamePower === true && compOn === false){
-	redActive();
-	yourTurn($red);
-	console.log(playSelect)
+	redActive(200);
+	yourTurn('r');
 }
 }
 
 $yellow.onclick = function (){
 	if(gamePower === true && compOn === false){
-	yellowActive();
-	yourTurn($yellow);
-	console.log(playSelect)
+	yellowActive(200);
+	yourTurn('y');
 }
 }
 
 $blue.onclick = function (){
 	if(gamePower === true && compOn === false){
-	blueActive();
-	yourTurn($blue);
-	console.log(playSelect)
+	blueActive(200);
+	yourTurn('b');
 }
 }
 
 
 
 // Starting the Game
-var isEqual;
 
 function randIndex(min, max){
 	return Math.round(Math.random() * (max-min) + min);
 }
 
 function checkState(){
-      if (compSelect.length === playSelect.length) {
-      	for(var i = compSelect.length; i--;) {
-      		if(compSelect[i] === playSelect[i]){
+	if(compSelect.length === 0) {
+		$counter.innerHTML = roundCount += 1;
+	    next();
+	    playState();
+	}
+	if(compSelect.length !== playSelect.length && compSelect.length >1){
+		if(compSelect[playSelect.length-1] !== playSelect[playSelect.length-1]){
+				$counter.innerHTML = ':(';
+				playSelect = [];
+				setTimeout(function(){
+					$counter.innerHTML = compSelect.length;
+  					playState();
+  				}, 2000)
+  				
+			}
+		}
+
+      if (compSelect.length === playSelect.length && compSelect.length > 0) {
+      	// console.log(compSelect.length)
+      		if(compSelect[compSelect.length-1] === playSelect[compSelect.length-1] && playSelect.length<20){
+      			console.log('yes')
       			playSelect = [];
                 next();
                 $counter.innerHTML = compSelect.length;
-      			playState();
-  			} else if (compSelect[i] !== playSelect[i]){
-  				playSelect = [];
-  				playState();
+                setTimeout(function(){
+                	playState();
+                }, 500)
+  			} else if (compSelect[compSelect.length-1] !== playSelect[compSelect.length-1]){
+  				$counter.innerHTML = ':(';
+				playSelect = [];
+				setTimeout(function(){
+					$counter.innerHTML = compSelect.length;
+  					playState();
+  				}, 2000)
+  			} else if (compSelect[compSelect.length-1] === playSelect[compSelect.length-1] && playSelect.length === 20){
+  				$counter.innerHTML = 'WIN';
+  				setTimeout(function(){
+  					location.reload();
+  				}, 4000)
   			}
-  		}
- 	}
+ 	  }
 }
 
 var roundCount = 0;
@@ -140,18 +184,17 @@ function yourTurn (elem){
 
 function next(){
 	var idx = randIndex(0,3);
-	var randomChoice = choices[idx];
-	compSelect.push(randomChoice);
+	compSelect.push(choices[idx]);
 }
 
 function playState(){
 	compOn = true;
 	var idx = 0;
 	var intervalFunc = setInterval(function(){
-		if(compSelect[idx] == $green){ greenActive();
-	 } else if (compSelect[idx] == $red){ redActive();
-	 } else if (compSelect[idx] == $yellow){ yellowActive();
-	 } else if (compSelect[idx] == $blue){ blueActive();
+		if(compSelect[idx] == 'g'){ greenActive(1000);
+	 } else if (compSelect[idx] == 'r'){ redActive(1000);
+	 } else if (compSelect[idx] == 'y'){ yellowActive(1000);
+	 } else if (compSelect[idx] == 'b'){ blueActive(1000);
 	 }
 	 idx++;
 	 if(idx<compSelect.length){
@@ -186,44 +229,44 @@ function gameStart(){
 
 $start.onclick = function(){
 	if(gamePower === true){
-	gameStart();
+	checkState();
   }
 }
 
-function greenActive(){
+function greenActive(time){
 	var audio = new Audio(sounds[0]);
 	audio.play();
 	$green.style.backgroundColor = '#03F903'
 	setTimeout(function(){
 		$green.style.backgroundColor = '#047213';
-	}, 1000);
+	}, time);
 }
 
-function redActive(){
+function redActive(time){
 	var audio = new Audio(sounds[1]);
 	audio.play();
 	$red.style.backgroundColor = 'red'
 	setTimeout(function(){
 		$red.style.backgroundColor = '#A20101';
-	}, 1000);
+	}, time);
 }
 
-function yellowActive(){
+function yellowActive(time){
 	var audio = new Audio(sounds[2]);
 	audio.play();
 	$yellow.style.backgroundColor = 'yellow'
 	setTimeout(function(){
 		$yellow.style.backgroundColor = '#A5A004';
-	}, 1000);
+	}, time);
 }
 
-function blueActive(){
+function blueActive(time){
 	var audio = new Audio(sounds[3]);
 	audio.play();
 	$blue.style.backgroundColor = '#0133FA'
 	setTimeout(function(){
 		$blue.style.backgroundColor = '#071660';
-	}, 1000);
+	}, time);
 }
 
 
