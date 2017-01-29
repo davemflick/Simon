@@ -2,19 +2,21 @@
 
 body {
 	top:0;
-	background-color: #ddd;
+	background-image: url(marble.jpeg);
 	text-align: center;
+	font-family: 'VT323', monospace;
 }
 
 #gameContainer {
 	position: relative;
-	border: 1px solid black;
 	border-radius: 50%;
+	border-radius: 20px solid black;
 	width: 400px;
 	height: 400px;
 	margin: auto;
 	margin-top: 15%;
-	background-color: #444;
+	background-color: rgba(0, 0, 0);
+	box-shadow: 5px 5px 25px 30px #111;
 }
 
 .btns {
@@ -30,6 +32,7 @@ body {
 	left: 0;
 	border-radius: 100% 0 0 0;
 	background-color: #047213;
+	box-shadow: 2px 2px 5px 6px black;
 }
 
 #red{
@@ -37,6 +40,7 @@ body {
 	right: 0;
 	border-radius: 0 100% 0 0;
 	background-color: #A20101;
+	box-shadow: 2px 2px 5px 6px black;
 }
 
 #yellow {
@@ -44,6 +48,7 @@ body {
 	left: 0;
 	border-radius: 0 0 0 100%;
 	background-color: #A5A004;
+	box-shadow: 2px 2px 5px 6px black;
 }
 
 #blue{
@@ -51,14 +56,15 @@ body {
 	right: 0;
 	border-radius: 0 0 100% 0;
 	background-color: #071660;
+	box-shadow: 2px 2px 5px 6px black;
 
 }
 
 #centerContainer{
 	position: absolute;
 	margin: 100px;
-	background-color: #ddd;
-	border: 15px solid #444;
+	background-image: url('marble.jpeg');
+	box-shadow: 1px 1px 4px 5px black;
 	border-radius: 50%;
 	height: 200px;
 	width: 200px;
@@ -66,22 +72,28 @@ body {
 
 #title {
 	margin-top: 15px;
-	margin-bottom: 5px;
-	font-size: 35px;
+	font-size: 40px;
+	font-weight: bold;
 }
 
 .settingContainer .row{
-	font-size: 10px;
+	font-size: 15px;
 }
 
 #counter {
-	width: 35px;
-	height: 25px;
+	width: 50px;
+	height: 30px;
 	border: solid black 1px;
 	border-radius: 4px;
-	background-color: white;
+	background-color: #2F3731;
 	margin-top: 5px;
-	font-size: 16px;
+	font-size: 20px;
+	color: red;
+	box-shadow: 0px 0px 3px 4px #aaa;
+}
+
+.counterContainer {
+	margin-right: 0px;
 }
 
 #strictLight{
@@ -90,12 +102,14 @@ body {
 	margin: auto;
 	margin-bottom: 3px;
 	border-radius: 50%;
-	background-color: white;
+	background-color: #ccc;
 	border: solid black 1px;
+	box-shadow: 0px 0px 1px 1px black;
 }
 
 .startContainer{
  margin-top: 8px;
+ margin-right: -1px;
 }
 
 
@@ -104,6 +118,16 @@ button {
 	width: 20px;
 	height: 20px;
 	outline: 0;
+}
+
+#start {
+	background-color: rgba(80, 65, 138, .8);
+	border-color: #D6D97A;
+}
+
+#strictMode{
+	background-color: rgba(80, 65, 138, .8);
+	border-color: #D6D97A;
 }
 
 .switch {
@@ -124,9 +148,10 @@ button {
 	right:0;
 	bottom:0;
 	border-radius: 25px;
-	background-color: #ccc;
+	background-color: #2C2E2C;
     -webkit-transition: .4s;
     transition: .4s;
+    box-shadow: 1px 1px 3px 3px black;
 }
 .slider:before {
   position: absolute;
@@ -136,18 +161,19 @@ button {
   left: 8px;
   bottom: 4px;
   border-radius: 50%;
-  background-color: white;
+  box-shadow: 1px 1px #aaa;
+  background-color: rgba(216, 0, 0, .8);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 
 input:checked + .slider {
-  background-color: #2BE7FB;
+  background-color: #4CC1D8;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2BE7FB;
+  box-shadow: 5px 5px 10px 10px black;
 }
 
 input:checked + .slider:before {
@@ -170,6 +196,7 @@ input:checked + .slider:before {
 	height: 300px;
 	margin: auto;
 	margin-top: 20%;
+	box-shadow: 2px 2px 15px 20px #111;
 }
 .btns {
 	position:absolute;
@@ -182,9 +209,6 @@ input:checked + .slider:before {
 #centerContainer{
 	position: absolute;
 	margin: 75px;
-	background-color: white;
-	border: 12px solid #444;
-	border-radius: 50%;
 	height: 150px;
 	width: 150px;
 }
@@ -198,11 +222,10 @@ input:checked + .slider:before {
 }
 
 #counter {
-	width: 28px;
-	height: 20px;
+	width: 40px;
+	height: 25px;
 	border: solid black 1px;
 	border-radius: 4px;
-	background-color: white;
 	margin-top: 5px
 }
 

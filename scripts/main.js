@@ -45,11 +45,9 @@ function counterOn () {
 }
 
 function counterOff(){
-	location.reload();
-	$counter.innerHTML = '';
-	playSelect = [];
-    compSelect = [];
-    roundCount = 0;
+	setTimeout(function(){
+		location.reload();
+	}, 200)
 }
 
 function highlight(elem, bkColor){
