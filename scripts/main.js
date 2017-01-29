@@ -1,18 +1,4 @@
 
-
-//Turn on Simon Game with switch
-//Counter turns on and displays '--'
-//create an array that contains values for all four colors
-// on Start, a random color is chosen, pushed into array, and color brightens, audio plays. 
-// The player will have a few seconds to respond in correct order.
-// Player selection will push color vaule into new array, that will have to match games array.
-// Counter will go up by one for every added value. Will end after 20 successful completions.
-// If 20 successful rounds, counter will Display 'WIN'
-// If player fails to match,Counter will display a wrong warning.
-// Strict Mode activated will not give a player more than one chance per round.
-// Strict mode light will turn red when activated.
-
-
 var $switchPower = document.getElementById('switchPower');
 var $counter = document.getElementById('counter');
 var $start = document.getElementById('start');
@@ -133,12 +119,13 @@ function randIndex(min, max){
 
 function checkState(){
 	if(compSelect.length === 0) {
-		$counter.innerHTML = roundCount += 1;
+		$counter.innerHTML = 1;
 	    next();
 	    playState();
 	}
+
 	if(compSelect.length !== playSelect.length && compSelect.length >1){
-		if(compSelect[playSelect.length-1] !== playSelect[playSelect.length-1]){
+		if(compSelect[playSelect.length-1] !== playSelect[playSelect.length-1] && strictValue == 0){
 				$counter.innerHTML = ':(';
 				playSelect = [];
 				setTimeout(function(){
@@ -146,6 +133,13 @@ function checkState(){
   					playState();
   				}, 2000)
   				
+			} else if(compSelect[playSelect.length-1] !== playSelect[playSelect.length-1] && strictValue == 1){
+				$counter.innerHTML = ':(';
+				playSelect = [];
+				compSelect = [];
+				setTimeout(function(){
+					$counter.innerHTML = '--';
+  				}, 2000)
 			}
 		}
 
@@ -155,16 +149,23 @@ function checkState(){
       			console.log('yes')
       			playSelect = [];
                 next();
-                $counter.innerHTML = compSelect.length;
                 setTimeout(function(){
+                	$counter.innerHTML = compSelect.length;
                 	playState();
                 }, 500)
-  			} else if (compSelect[compSelect.length-1] !== playSelect[compSelect.length-1]){
+  			} else if (compSelect[compSelect.length-1] !== playSelect[compSelect.length-1] && strictValue == 0){
   				$counter.innerHTML = ':(';
 				playSelect = [];
 				setTimeout(function(){
 					$counter.innerHTML = compSelect.length;
   					playState();
+  				}, 2000)
+  			} else if (compSelect[compSelect.length-1] !== playSelect[compSelect.length-1] && strictValue == 1){
+  				$counter.innerHTML = ':(';
+				playSelect = [];
+				compSelect = [];
+				setTimeout(function(){
+					$counter.innerHTML = '--';
   				}, 2000)
   			} else if (compSelect[compSelect.length-1] === playSelect[compSelect.length-1] && playSelect.length === 20){
   				$counter.innerHTML = 'WIN';
@@ -173,9 +174,9 @@ function checkState(){
   				}, 4000)
   			}
  	  }
+
 }
 
-var roundCount = 0;
 
 function yourTurn (elem){
 	playSelect.push(elem);
@@ -205,27 +206,6 @@ function playState(){
  return false;
 }
 
-
-
-
-function compHighlight(elem, bkColor, sound){
-	var audio = new Audio(sound);
-	audio.play();
-	var el = elem;
-	var original = elem.style.backgroundColor;
-	el.style.backgroundColor = bkColor;
-	setTimeout(function(){
-		el.style.backgroundColor = original;
-	}, 1200)
-}
-
-function gameStart(){
-	var idx = randIndex(0,3);
-	var randomChoice = choices[idx];
-	$counter.innerHTML = roundCount += 1;
-	compSelect.push(randomChoice);
-	compHighlight(randomChoice, highColors[idx], sounds[idx]);
-}
 
 $start.onclick = function(){
 	if(gamePower === true){
