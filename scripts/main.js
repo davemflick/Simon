@@ -22,7 +22,7 @@ var highColors = ['#03F903', 'red', 'yellow', '#0133FA'];
 var compOn = false;
 
 
-
+var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
 
 //Turn Game On and Off, designate status.
 function powerOn(){
@@ -78,34 +78,34 @@ $strictMode.onclick = function(){
  }
 }
 
-$green.onclick = function () {
+$green.addEventListener(touchEvent, function () {
 	if(gamePower === true && compOn === false){
 	greenActive(200);
 	yourTurn('g');
   }
-}
+})
 
 
-$red.onclick = function (){
+$red.addEventListener(touchEvent, function (){
 	if(gamePower === true && compOn === false){
 	redActive(200);
 	yourTurn('r');
 }
-}
+})
 
-$yellow.onclick = function (){
+$yellow.addEventListener(touchEvent, function (){
 	if(gamePower === true && compOn === false){
 	yellowActive(200);
 	yourTurn('y');
 }
-}
+})
 
-$blue.onclick = function (){
+$blue.addEventListener(touchEvent, function (){
 	if(gamePower === true && compOn === false){
 	blueActive(200);
 	yourTurn('b');
 }
-}
+})
 
 
 
